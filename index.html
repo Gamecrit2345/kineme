@@ -3,71 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kineme | Impeachment Updates</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+  <title>KINEME - Philippine Political News</title>
   <style>
-    body { font-family: 'Segoe UI', system-ui, sans-serif; }
-    .hero-img { transition: transform 0.4s ease; }
-    .hero-img:hover { transform: scale(1.03); }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #0a0a0a;
+      color: #fff;
+      text-align: center;
+    }
+    h1 { color: #ff0000; margin-bottom: 5px; }
+    .news { 
+      max-width: 800px; 
+      margin: 20px auto; 
+      text-align: left; 
+      background: #1a1a1a; 
+      padding: 20px; 
+      border-radius: 10px; 
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #0066ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .ad-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      color: #000;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255,0,0,0.9);
+      z-index: 9999;
+      max-width: 420px;
+      display: none;
+      text-align: center;
+    }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body>
 
-  <!-- Header -->
-  <header class="bg-red-700 text-white py-4 shadow-md">
-    <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
-      <h1 class="text-3xl font-bold flex items-center gap-3">
-        <i class="fas fa-newspaper"></i> KINEME
-      </h1>
-      <p class="text-sm opacity-90">Philippine Political News</p>
-    </div>
-  </header>
+  <h1>📰 KINEME</h1>
+  <p><strong>Philippine Political News</strong></p>
 
-  <main class="max-w-4xl mx-auto px-4 py-8">
+  <div class="news">
+    <h2>Volunteer lawyers backing up impeach team</h2>
+    <p><strong>By: Gabriel Pabico Lalu, Kenneth Christiane Basilio — INQUIRER.net</strong></p>
+    <p>June 12, 2026</p>
+    <p>MANILA, Philippines — Instead of the “bloodbath” she claimed...</p>
+  </div>
 
-    <article>
-      <h1 class="text-4xl font-bold leading-tight mb-4">
-        Volunteer lawyers backing up impeach team
-      </h1>
+  <button onclick="scanNow()">🔍 Scan for Latest News</button>
+  <button onclick="showAd()">Test Ad</button>
 
-      <p class="text-gray-600 mb-6">
-        By: Gabriel Pabico Lalu, Kenneth Christiane Basilio — INQUIRER.net<br>
-        June 12, 2026
-      </p>
+  <!-- Pop-up Advertisement -->
+  <div id="adPopup" class="ad-popup">
+    <h2>📢 Kineme Advertisement</h2>
+    <p id="adText" style="font-size:18px;"></p>
+    <br>
+    <button onclick="closeAd()" style="background:#ff0000;">Close</button>
+  </div>
 
-      <!-- Main Image -->
-      <img src="luistro-kapunan-12june2026-2048x1151.webp" 
-           class="hero-img w-full rounded-xl shadow-lg mb-6" 
-           alt="Luistro and Kapunan">
+  <script>
+    const ads = [
+      "🔥 Star this repo para mas maraming updates! ⭐",
+      "💰 Gusto mo ng custom website o tool? Message me!",
+      "❤️ Support Gamecrit2345 on GitHub",
+      "🛡️ Educational & Simulation Project Only",
+      "🚀 More exciting projects coming soon!",
+      "Like & Share para lumabas pa ang iba pang balita!"
+    ];
 
-      <p class="text-lg leading-relaxed text-gray-700 mb-8">
-        MANILA, Philippines — Instead of the “bloodbath” she claimed she was eager for...
-      </p>
+    function showAd() {
+      const randomAd = ads[Math.floor(Math.random() * ads.length)];
+      document.getElementById('adText').innerHTML = randomAd;
+      document.getElementById('adPopup').style.display = 'block';
+    }
 
-      <!-- Rest of your article content (I kept it all) -->
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
-        <!-- Paste the rest of your paragraphs here -->
-        <p>MANY ARE WILLING: Batangas Rep. Gerville Luistro (left)... </p>
-        <!-- ... copy all the <p> and other content from your original index.html ... -->
-      </div>
+    function closeAd() {
+      document.getElementById('adPopup').style.display = 'none';
+    }
 
-      <!-- Second Image -->
-      <img src="download.jpg" 
-           class="hero-img w-full rounded-xl shadow-lg my-8" 
-           alt="News Image">
+    // Auto pop-up every 15-25 seconds
+    setInterval(() => {
+      if (Math.random() > 0.3) showAd();
+    }, 18000);
 
-      <!-- More content here... -->
-    </article>
+    // First ad after 6 seconds
+    setTimeout(showAd, 6000);
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8 mt-12">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <p>&copy; 2026 Kineme News • All Rights Reserved</p>
-    </div>
-  </footer>
+    function scanNow() {
+      alert("🔍 Scanning for latest impeachment updates... (Simulation)");
+      setTimeout(showAd, 800);
+    }
+  </script>
 
 </body>
 </html>
