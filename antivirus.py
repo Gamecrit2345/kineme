@@ -1,87 +1,103 @@
-import tkinter as tk
-from tkinter import messagebox, filedialog
-import random
-import threading
-import time
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KINEME - Philippine Political News</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #0a0a0a;
+      color: #fff;
+      text-align: center;
+    }
+    h1 { color: #ff0000; }
+    .news { max-width: 800px; margin: 20px auto; text-align: left; background: #1a1a1a; padding: 20px; border-radius: 10px; }
+    button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background: #0066ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    .ad-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff;
+      color: #000;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255,0,0,0.8);
+      z-index: 9999;
+      max-width: 400px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
 
-# ====================== ADS ======================
-ADS = [
-    "🔥 Star this repo para mas maraming updates! ⭐",
-    "💰 Gusto mo ng sariling custom tool? PM me!",
-    "🛡️ Kineme Antivirus - Educational Project Only",
-    "❤️ Like & Share ang project na 'to!",
-    "🚀 More Python & Cybersecurity tools coming!",
-    "⚠️ This is a simulation for learning only",
-    "📢 Support Gamecrit2345 on GitHub",
-    "💡 Follow me for more projects!"
-]
+  <h1>📰 KINEME</h1>
+  <p>Philippine Political News</p>
 
-def show_ad():
-    ad = random.choice(ADS)
-    messagebox.showinfo("📢 Kineme Advertisement", ad)
+  <div class="news">
+    <h2>Volunteer lawyers backing up impeach team</h2>
+    <p>By: Gabriel Pabico Lalu, Kenneth Christiane Basilio — INQUIRER.net</p>
+    <p>June 12, 2026</p>
+    <p>MANILA, Philippines — Instead of the “bloodbath” she claimed...</p>
+  </div>
 
-class KinemeAntivirus:
-    def __init__(self):
-        self.root = tk.Tk()
-        self.root.title("🛡️ Kineme Antivirus")
-        self.root.geometry("750x550")
-        self.root.configure(bg="#0a0a0a")
+  <button onclick="scanNow()">Scan for Updates</button>
+  <button onclick="showAd()">Test Ad</button>
 
-        tk.Label(self.root, text="🛡️ Kineme Antivirus", 
-                 font=("Arial", 22, "bold"), fg="#00ff41", bg="#0a0a0a").pack(pady=15)
+  <!-- Pop-up Ad -->
+  <div id="adPopup" class="ad-popup">
+    <h2>📢 Kineme Advertisement</h2>
+    <p id="adText"></p>
+    <button onclick="closeAd()">Close</button>
+  </div>
 
-        # Buttons
-        btn_frame = tk.Frame(self.root, bg="#0a0a0a")
-        btn_frame.pack(pady=10)
+  <script>
+    const ads = [
+      "🔥 Star this repo para mas maraming updates! ⭐",
+      "💰 Gusto mo ng custom website o tool? PM me!",
+      "❤️ Support Gamecrit2345 sa GitHub",
+      "🛡️ Educational Project Only",
+      "🚀 More projects coming soon!",
+      "Like & Share para lumabas pa ang iba pang content!"
+    ];
 
-        tk.Button(btn_frame, text="Scan Folder", command=self.scan_folder,
-                  bg="#0066ff", fg="white", font=("Arial", 11), width=18).pack(side=tk.LEFT, padx=8)
-        
-        tk.Button(btn_frame, text="Scan File", command=self.scan_file,
-                  bg="#0066ff", fg="white", font=("Arial", 11), width=18).pack(side=tk.LEFT, padx=8)
-        
-        tk.Button(btn_frame, text="Test Ad", command=show_ad,
-                  bg="#ff8800", fg="white", font=("Arial", 11), width=15).pack(side=tk.LEFT, padx=8)
+    function showAd() {
+      const randomAd = ads[Math.floor(Math.random() * ads.length)];
+      document.getElementById('adText').innerHTML = randomAd;
+      document.getElementById('adPopup').style.display = 'block';
+    }
 
-        self.log = tk.Text(self.root, height=18, bg="#111111", fg="#00ff41", font=("Consolas", 10))
-        self.log.pack(padx=20, pady=15, fill="both", expand=True)
+    function closeAd() {
+      document.getElementById('adPopup').style.display = 'none';
+    }
 
-        self.log_message("✅ Kineme Antivirus Ready!")
-        self.log_message("Click 'Test Ad' to check if pop-up works")
+    // Auto pop-up ads every 15-30 seconds
+    setInterval(() => {
+      if (Math.random() > 0.4) {  // 60% chance
+        showAd();
+      }
+    }, 18000);
 
-        # Start auto ads
-        threading.Thread(target=self.auto_ads, daemon=True).start()
+    // First ad after 7 seconds
+    setTimeout(showAd, 7000);
 
-    def log_message(self, msg):
-        self.log.insert(tk.END, f"[+] {msg}\n")
-        self.log.see(tk.END)
+    function scanNow() {
+      alert("🔍 Scanning for latest news... (Simulation only)");
+      setTimeout(showAd, 1200);
+    }
+  </script>
 
-    def auto_ads(self):
-        time.sleep(8)  # First ad after 8 seconds
-        while True:
-            try:
-                self.root.after(0, show_ad)
-                time.sleep(random.randint(18, 35))   # Every 18-35 seconds
-            except:
-                break
-
-    def scan_folder(self):
-        folder = filedialog.askdirectory()
-        if folder:
-            self.log_message(f"Scanning folder: {folder}")
-            for i in range(3):
-                self.log_message(f"Checking files... {i+1}/3")
-                time.sleep(0.6)
-            self.log_message("✅ Scan Complete (Simulation)")
-            self.root.after(800, show_ad)
-
-    def scan_file(self):
-        file = filedialog.askopenfilename()
-        if file:
-            self.log_message(f"Scanning: {file}")
-            self.log_message("✅ File is Clean (Simulation)")
-            self.root.after(600, show_ad)
-
-if __name__ == "__main__":
-    app = KinemeAntivirus()
-    app.root.mainloop()
+</body>
+</html>
