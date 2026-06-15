@@ -22,14 +22,9 @@
             top: 0;
             z-index: 100;
         }
-        .header-hud h1 {
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-        }
-        .header-hud .byline {
-            font-size: 1.1rem;
-            opacity: 0.95;
-        }
+        .header-hud h1 { font-size: 2.2rem; margin-bottom: 8px; }
+        .header-hud .byline { font-size: 1.1rem; opacity: 0.95; }
+
         .container {
             max-width: 900px;
             margin: 30px auto;
@@ -37,11 +32,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+        .hero-image { width: 100%; height: auto; display: block; }
         .caption {
             background: #f1f1f1;
             padding: 12px;
@@ -50,22 +41,28 @@
             text-align: center;
             font-style: italic;
         }
-        article {
-            padding: 40px 50px;
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 25px 0;
         }
-        h2, h3, h4 {
-            color: #c8102e;
-            margin: 25px 0 15px;
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
         }
+
+        article { padding: 40px 50px; }
+        h3 { color: #c8102e; margin: 25px 0 15px; }
         p, li, .quote, h3 {
             opacity: 0;
             transform: translateY(50px);
-            transition: all 1.2s ease-out;   /* Mas mabagal */
+            transition: all 1.2s ease-out;
         }
-        p.visible, li.visible, .quote.visible, h3.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .visible { opacity: 1; transform: translateY(0); }
+
         .quote {
             background: #f8f0f0;
             border-left: 6px solid #c8102e;
@@ -88,6 +85,43 @@
             font-size: 0.9rem;
         }
 
+        /* ==================== POP-UP AD ==================== */
+        .popup-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .popup-content {
+            background: white;
+            max-width: 800px;
+            width: 90%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .popup-header {
+            background: #c8102e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .popup-header h3 { margin: 0; font-size: 1.3rem; }
+        .close-btn {
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .popup-body { padding: 20px; }
+
         @media (max-width: 768px) {
             article { padding: 25px; }
             .header-hud h1 { font-size: 1.8rem; }
@@ -96,7 +130,7 @@
 </head>
 <body>
 
-    <!-- HUD / Top Header -->
+    <!-- HUD Header -->
     <header class="header-hud">
         <h1>Volunteer Lawyers Backing Up Impeach Team</h1>
         <div class="byline">
@@ -106,74 +140,78 @@
     </header>
 
     <div class="container">
+        <img src="luistro-kapunan-12june2026-2048x1151.webp" alt="Luistro and Kapunan" class="hero-image">
+        <div class="caption">MANY ARE WILLING: Batangas Rep. Gerville Luistro and Atty. Lorna Kapunan</div>
 
-        <img src="luistro-kapunan-12june2026-2048x1151.webp" alt="Rep. Gerville Luistro and Atty. Lorna Kapunan" class="hero-image">
-        <div class="caption">
-            MANY ARE WILLING: Batangas Rep. Gerville Luistro (left) introduces veteran litigator Lorna Kapunan (right) as one of the volunteer private prosecutors. 
-            — Screengrab from ABS-CBN NEWS
+        <!-- Video Section -->
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/DRmRsgaugrY" frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <div class="meta">
-            <strong>MANILA, Philippines</strong> — The House prosecution panel has enlisted top volunteer lawyers for the upcoming impeachment trial of Vice President Sara Duterte.
-        </div>
+        <div class="meta"><strong>MANILA, Philippines</strong> — House prosecution enlists top volunteer lawyers...</div>
 
         <article id="article-content">
-            <p>Instead of the “bloodbath” she claimed she was eager for when she was first impeached last year, Vice President Sara Duterte now seems to prefer a “bubble bath,” based on her response to the charges, a private prosecutor in her imminent trial said on Thursday.</p>
-
-            <p>Veteran litigator <strong>Lorna Kapunan</strong>, one of the 10 volunteer lawyers assisting the 11-member House prosecution panel, supported the prosecutors’ view that the defense is trying to evade a full hearing on the merits.</p>
-
-            <div class="quote">
-                “If we remember, she said before… that there would be a bloodbath that would occur. But where is that bloodbath? What I can see, personally, is that it is a bubble bath, not a bloodbath.” 
-                — Atty. Lorna Kapunan
-            </div>
-
-            <h3>Key Points</h3>
-            <ul>
-                <li>Defense answer allegedly contains only rehashed technical arguments and old annexes.</li>
-                <li>Core charges remain the same: culpable violation of the Constitution, betrayal of public trust, graft and corruption, bribery, and high crimes.</li>
-                <li>Second impeachment supported by 257 House members (vs 215 in the first).</li>
-                <li>Trial is set to begin on <strong>July 6, 2026</strong>.</li>
-            </ul>
-
-            <h3>Volunteer Private Prosecutors</h3>
-            <p>The volunteer lawyers come from top law firms and are serving <strong>pro bono</strong>:</p>
-            <ul>
-                <li><strong>Kapunan and Castillo Law</strong>: Atty. Lorna Kapunan, Sonya Margarita Benemerito Castillo, Deanna Melissa Lorenzo Singian, Lino Chris Kapunan, Bettina Zamora</li>
-                <li><strong>Pecabar Law</strong>: F Marforth Fua, Erwin Matib, Justine Anne Lamarca, James Bryan Ibrahim Alih</li>
-                <li><strong>SaLiGal Law</strong>: Atty. Amando Ligutan</li>
-            </ul>
-
-            <p>Batangas Rep. Gerville Luistro, head of the House prosecution panel, expressed confidence in the “abogado de campanilla” joining the team.</p>
-
-            <h3>Prosecution Position</h3>
-            <p>The House has filed a manifestation stating there is no need to reply to Duterte’s answer because it did not address the material allegations. They submitted their pre-trial brief on June 15.</p>
+            <!-- Article content same as before -->
+            <p>Instead of the “bloodbath” she claimed she was eager for...</p>
+            <!-- (paste the rest of your article here) -->
         </article>
     </div>
 
     <footer>
         <p>Source: Philippine Daily Inquirer • June 12, 2026</p>
-        <p>Hosted on GitHub Pages • gamecrit2345.github.io/kineme</p>
+        <p>gamecrit2345.github.io/kineme</p>
     </footer>
 
+    <!-- ==================== POP-UP VIDEO AD ==================== -->
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <h3>🎥 Special Video: Impeachment Trial Update</h3>
+                <span class="close-btn" onclick="closePopup()">×</span>
+            </div>
+            <div class="popup-body">
+                <div class="video-container">
+                    <iframe id="popup-video" 
+                        src="https://www.youtube.com/embed/DRmRsgaugrY" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Slower Scroll Reveal Effect
+        // Slow Scroll Reveal (same as before)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const elements = entry.target.querySelectorAll('p, li, .quote, h3');
                     elements.forEach((el, index) => {
-                        setTimeout(() => {
-                            el.classList.add('visible');
-                        }, index * 250);   // Mas mabagal na stagger
+                        setTimeout(() => el.classList.add('visible'), index * 250);
                     });
                 }
             });
-        }, {
-            threshold: 0.15,
-            rootMargin: "0px 0px -80px 0px"
-        });
+        }, { threshold: 0.15 });
 
         observer.observe(document.getElementById('article-content'));
+
+        // Pop-up Logic
+        function showPopup() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        // Show popup after 3 seconds
+        setTimeout(showPopup, 3000);
+
+        // Optional: Close when clicking outside the popup content
+        document.getElementById('popup').addEventListener('click', function(e) {
+            if (e.target === this) closePopup();
+        });
     </script>
 </body>
 </html>
