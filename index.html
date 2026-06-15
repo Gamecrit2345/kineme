@@ -57,9 +57,14 @@
             color: #c8102e;
             margin: 25px 0 15px;
         }
-        p {
-            margin-bottom: 18px;
-            font-size: 1.05rem;
+        p, li, .quote {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        p.visible, li.visible, .quote.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .quote {
             background: #f8f0f0;
@@ -82,6 +87,16 @@
             color: #ddd;
             font-size: 0.9rem;
         }
+
+        /* Stagger effect para mas slowmo */
+        article > * {
+            transition-delay: 0.1s;
+        }
+        article > *:nth-child(2) { transition-delay: 0.2s; }
+        article > *:nth-child(3) { transition-delay: 0.3s; }
+        article > *:nth-child(4) { transition-delay: 0.4s; }
+        article > *:nth-child(5) { transition-delay: 0.5s; }
+
         @media (max-width: 768px) {
             article { padding: 25px; }
             .header-hud h1 { font-size: 1.8rem; }
@@ -101,7 +116,6 @@
 
     <div class="container">
 
-        <!-- Main Image -->
         <img src="luistro-kapunan-12june2026-2048x1151.webp" alt="Rep. Gerville Luistro and Atty. Lorna Kapunan" class="hero-image">
         <div class="caption">
             MANY ARE WILLING: Batangas Rep. Gerville Luistro (left) introduces veteran litigator Lorna Kapunan (right) as one of the volunteer private prosecutors. 
@@ -112,8 +126,7 @@
             <strong>MANILA, Philippines</strong> — The House prosecution panel has enlisted top volunteer lawyers for the upcoming impeachment trial of Vice President Sara Duterte.
         </div>
 
-        <article>
-
+        <article id="article-content">
             <p>Instead of the “bloodbath” she claimed she was eager for when she was first impeached last year, Vice President Sara Duterte now seems to prefer a “bubble bath,” based on her response to the charges, a private prosecutor in her imminent trial said on Thursday.</p>
 
             <p>Veteran litigator <strong>Lorna Kapunan</strong>, one of the 10 volunteer lawyers assisting the 11-member House prosecution panel, supported the prosecutors’ view that the defense is trying to evade a full hearing on the merits.</p>
@@ -143,7 +156,6 @@
 
             <h3>Prosecution Position</h3>
             <p>The House has filed a manifestation stating there is no need to reply to Duterte’s answer because it did not address the material allegations. They submitted their pre-trial brief on June 15.</p>
-
         </article>
     </div>
 
@@ -152,5 +164,26 @@
         <p>Hosted on GitHub Pages • gamecrit2345.github.io/kineme</p>
     </footer>
 
+    <script>
+        // Scroll Reveal Effect (Slowmo Fade-up)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const elements = entry.target.querySelectorAll('p, li, .quote, h3');
+                    elements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('visible');
+                        }, index * 120); // Slowmo stagger effect
+                    });
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        // Observe the article
+        observer.observe(document.getElementById('article-content'));
+    </script>
 </body>
 </html>
