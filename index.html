@@ -57,12 +57,12 @@
             color: #c8102e;
             margin: 25px 0 15px;
         }
-        p, li, .quote {
+        p, li, .quote, h3 {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
+            transform: translateY(50px);
+            transition: all 1.2s ease-out;   /* Mas mabagal */
         }
-        p.visible, li.visible, .quote.visible {
+        p.visible, li.visible, .quote.visible, h3.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -87,15 +87,6 @@
             color: #ddd;
             font-size: 0.9rem;
         }
-
-        /* Stagger effect para mas slowmo */
-        article > * {
-            transition-delay: 0.1s;
-        }
-        article > *:nth-child(2) { transition-delay: 0.2s; }
-        article > *:nth-child(3) { transition-delay: 0.3s; }
-        article > *:nth-child(4) { transition-delay: 0.4s; }
-        article > *:nth-child(5) { transition-delay: 0.5s; }
 
         @media (max-width: 768px) {
             article { padding: 25px; }
@@ -165,7 +156,7 @@
     </footer>
 
     <script>
-        // Scroll Reveal Effect (Slowmo Fade-up)
+        // Slower Scroll Reveal Effect
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -173,16 +164,15 @@
                     elements.forEach((el, index) => {
                         setTimeout(() => {
                             el.classList.add('visible');
-                        }, index * 120); // Slowmo stagger effect
+                        }, index * 250);   // Mas mabagal na stagger
                     });
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
+            threshold: 0.15,
+            rootMargin: "0px 0px -80px 0px"
         });
 
-        // Observe the article
         observer.observe(document.getElementById('article-content'));
     </script>
 </body>
